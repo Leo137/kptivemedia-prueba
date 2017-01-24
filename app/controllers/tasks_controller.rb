@@ -20,9 +20,9 @@ class TasksController < ApplicationController
 	 	@task = Task.new(task_params)
 	 	@task.user = current_user
 	 	if @task.save
-	 		render json: {task: @task}
+	 		render json: { task: @task }
 	 	else
-	 		head 500
+	 		render json: {errors: @task.errors }
 	 	end
 	 end
 
@@ -30,9 +30,9 @@ class TasksController < ApplicationController
 	 # PATCH/PUT /tasks/1.json
 	 def update
 	 	if @task.update(task_params)
-	 		render json: {task: @task}
+	 		render json: { task: @task }
 	 	else
-	 		head 500
+	 		render json: { errors: @task.errors }
 	 	end
 	 end
 
@@ -49,6 +49,10 @@ class TasksController < ApplicationController
 	   	@task = Task.find_by_id(params[:id])
 	   	if @task == nil
 	   		head 404
+	   	end
+	   	if @task && @task.user_id != current_user.id
+	   	    # Unauthorized for current resource
+	   	    head 403
 	   	end
 	end
 
