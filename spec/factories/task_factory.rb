@@ -3,6 +3,7 @@ FactoryGirl.define do
 
 		sequence(:name) { Faker::Lorem.word }
 		sequence(:resolved) { Faker::Boolean.boolean }
+		sequence(:status) { Faker::Lorem.word }
 		user
 
 	end

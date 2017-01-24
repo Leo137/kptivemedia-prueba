@@ -25,7 +25,8 @@ describe "Task requests" do
 		params = {
 			:task => {
 				:name => "tarea nueva",
-				:resolved => false
+				:resolved => false,
+				:status => "Analizando"
 			}
 		}
 
@@ -37,6 +38,8 @@ describe "Task requests" do
 
 		expect(json['task']['name']).to eq "tarea nueva"
 
+		expect(json['task']['status']).to eq "Analizando"
+
 	end
 
 	it "can update task for user" do
@@ -45,19 +48,17 @@ describe "Task requests" do
 
 		new_name = last_task.name + "editado"
 		new_resolved = !last_task.resolved
+		new_status = last_task.status + "editado"
 
 		params = {
 			:task => {
 				:name => new_name,
-				:resolved => new_resolved
+				:resolved => new_resolved,
+				:status => new_status
 			}
 		}
 
-		puts last_task.resolved
-
 		put "/tasks/#{last_task.id}?#{@query_parameters}", params: params.to_json, headers: { 'CONTENT_TYPE' => 'application/json', 'ACCEPT' => 'application/json' }
-
-		puts response.body
 
 		expect(response).to be_success
 
@@ -65,6 +66,7 @@ describe "Task requests" do
 
 		expect(json['task']['name']).to eq new_name
 		expect(json['task']['resolved']).to be new_resolved
+		expect(json['task']['status']).to eq new_status
 
 	end
 

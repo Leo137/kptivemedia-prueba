@@ -1,24 +1,10 @@
-# README
+API Rest prueba Kptivemedia.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Aplicación TODO.
+Funciones:
+- Registrar un usuario.
+- Agregar tareas al TODO list.
+- Marcar una tarea como resuelta.
+- Obtener la lista de tareas y su estado actual.
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Para mas información acerca de como usar la app y sus funciones ver tests en carpeta rspec
